@@ -1,17 +1,8 @@
 set :laravel_roles, :all
-set :laravel_artisan_flags, "--env=production"
-set :laravel_server_user, "www-data"
+set :laravel_artisan_flags, '--env=production'
+set :laravel_server_user, "deploy"
 
-# fix bug in capistrano-file-permissions
-set :linked_dirs, []
+set :linked_dirs, ['vendor', 'storage/app', 'storage/logs', 'storage/framework/cache', 'storage/framework/sessions', 'storage/framework/views', 'bootstrap/cache']
 
-set :file_permissions_paths, [
-  'app/storage',
-  'app/storage/cache',
-  'app/storage/logs',
-  'app/storage/meta',
-  'app/storage/sessions',
-  'app/storage/views',
-]
+set :file_permissions_paths, [fetch(:linked_dirs)]
 set :file_permissions_users, [fetch(:laravel_server_user)]
-

@@ -1,6 +1,6 @@
 # Capistrano::laravel
 
-Deploy Laravel applications with Capistrano v3.*
+Deploy Laravel 5.1 applications with Capistrano v3.*
 
 ## Installation
 
@@ -8,7 +8,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'capistrano', '~> 3.0.0'
-gem 'capistrano-laravel'
+gem 'capistrano-laravel51'
 ```
 
 And then execute:
@@ -17,14 +17,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install capistrano-laravel
+    $ gem install capistrano-laravel51
 
 ## Usage
 
 Require the module in your `Capfile`:
 
 ```ruby
-require 'capistrano/laravel'
+require 'capistrano/laravel51'
 ```
 
 ### Configuration
@@ -34,7 +34,7 @@ The gem makes the following configuration variables available (shown with defaul
 ```ruby
 set :laravel_roles, :all
 set :laravel_artisan_flags, "--env=production"
-set :laravel_server_user, "www-data"
+set :laravel_server_user, "deploy"
 ```
 
 ## Contributing
