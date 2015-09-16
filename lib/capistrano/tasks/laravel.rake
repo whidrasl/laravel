@@ -9,8 +9,8 @@ namespace :deploy do
             end
         end
     end
-    
+
 	after :published, "composer:install"
 	after :updated, "deploy:optimize"
-  	after :updated, 'deploy:set_permissions:acl'
+  	after :updated, 'deploy:set_permissions:chmod'
 end

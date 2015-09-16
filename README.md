@@ -1,4 +1,4 @@
-# Capistrano::laravel
+# Capistrano::laravel51
 
 Deploy Laravel 5.1 applications with Capistrano v3.*
 
