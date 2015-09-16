@@ -3,8 +3,8 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
-  spec.name          = 'capistrano-laravel51'
-  spec.version       = '1.0.0'
+  spec.name          = 'capistrano_laravel51'
+  spec.version       = '1.0.1'
   spec.authors       = ['Korviakov Andrey']
   spec.email         = ['4lifenet@gmail.com']
   spec.description   = %q{Laravel v5.1 deployment for Capistrano 3.x}
