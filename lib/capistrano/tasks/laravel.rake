@@ -1,33 +1,16 @@
 namespace :deploy do
-    task :clear_view do
-        on roles(:all) do
-            within release_path do
-                invoke "laravel:artisan", "view:clear"
-            end
-        end
-    end
-    task :clear_cache do
-        on roles(:all) do
-            within release_path do
-                invoke "laravel:artisan", "cache:clear"
-            end
-        end
-    end
-    task :clear_compiled do
-        on roles(:all) do
-            within release_path do
-                invoke "laravel:artisan", "clear-compiled"
-            end
-        end
-    end   
+	desc "Optimize Laravel Class Loader"
     task :optimize do
         on roles(:all) do
             within release_path do
-                invoke "laravel:artisan", "optimize"
+                execute :php, :artisan, "view:clear", fetch(:laravel_artisan_flags)
+                execute :php, :artisan, "cache:clear", fetch(:laravel_artisan_flags)
+                execute :php, :artisan, "clear-compiled", fetch(:laravel_artisan_flags)
+                execute :php, :artisan, "optimize", fetch(:laravel_artisan_flags)
             end
         end
     end
-
+    
     desc 'Reload php-fpm'
     task :fpm_reload do
         on roles(:all) do
@@ -38,8 +21,5 @@ namespace :deploy do
 	after :published, 'composer:install'
   	after :updated, 'deploy:set_permissions:chmod'
     after 'deploy:symlink:release', 'deploy:fpm_reload'
-    after 'deploy:fpm_reload', 'deploy:clear_view'
-    after 'deploy:clear_view', 'deploy:clear_cache'
-    after 'deploy:clear_cache', 'deploy:clear_compiled'
-     after 'deploy:clear_compiled', 'deploy:optimize'
+    after 'deploy:fpm_reload', 'deploy:optimize'
 end

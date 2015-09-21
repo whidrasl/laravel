@@ -1,7 +1,7 @@
 namespace :deploy do
   task :migrate do
     within release_path do
-      invoke "laravel:artisan", "migrate"
+      execute :php, :artisan, "migrate", fetch(:laravel_artisan_flags)
     end
   end
 end
