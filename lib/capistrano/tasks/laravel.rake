@@ -20,6 +20,6 @@ namespace :deploy do
 
 	after :published, 'composer:install'
   	after :updated, 'deploy:set_permissions:chmod'
-    after ':symlink:release', 'deploy:fpm_reload'
-    after ':fpm_reload', 'deploy:optimize'
+    after 'deploy:symlink:release', 'deploy:fpm_reload'
+    after 'deploy:fpm_reload', 'deploy:optimize'
 end
