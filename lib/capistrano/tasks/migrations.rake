@@ -1,7 +1,9 @@
 namespace :deploy do
   task :migrate do
-    within release_path do
-      execute :php, :artisan, "migrate", fetch(:laravel_artisan_flags)
-    end
+  	on roles(:all) do
+	    within release_path do
+	      execute :php, :artisan, "migrate", "--database=migrate"
+	    end
+	end
   end
 end
